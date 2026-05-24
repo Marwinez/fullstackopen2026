@@ -1,25 +1,6 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
-const mongoose = require('mongoose')
-
-const password = process.argv[2]
-const url = `mongodb+srv://marwinez:${password}@notesapp.weicngo.mongodb.net/notesapp?appName=notesapp`
-
-mongoose.set('strictQuery', false)
-mongoose.connect(url, { family: 4 })
-
-const noteSchema = new mongoose.Schema({
-    content: String,
-    important: Boolean,
-})
-
-noteSchema.set('toJSON', {
-    transform: (doc, ret) => {
-        ret.id = ret._id.toString()
-        delete ret._id
-        delete ret.__v
-    }
-})
 
 const Note = require('./models/note')
 
@@ -113,7 +94,7 @@ const unknownEndpoint = (request, response) => {
 
 app.use(unknownEndpoint)
 
-const PORT = 3001
+const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
