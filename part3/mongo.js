@@ -7,7 +7,7 @@ if (process.argv.length < 3) {
 
 const password = process.argv[2]
 
-const url = `mongodb+srv://marwinez:${password}@notesapp.weicngo.mongodb.net/notesapp?appName=notesapp`
+const url = `mongodb+srv://marwinez:${password}@notesapp.weicngo.mongodb.net/testnotesapp?appName=notesapp`
 
 mongoose.set('strictQuery', false)
 
@@ -29,8 +29,8 @@ noteSchema.set('toJSON', {
 const Note = mongoose.model('Note', noteSchema)
 
 const note = new Note({
-        id: '3',
-        content: 'GET and POST are the most important methods of HTTP protocol',
+        id: '1',
+        content: 'test1',
         important: true,
     })
 
